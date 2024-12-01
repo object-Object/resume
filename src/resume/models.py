@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydantic import BaseModel as _BaseModel
+from pydantic import BaseModel as _BaseModel, Field
 
 
 class BaseModel(_BaseModel):
@@ -28,7 +28,7 @@ class Employment(BaseModel):
     title: str
     company: str
     date: Date
-    description: list[str] | None = None
+    description: list[str] = Field(default_factory=list)
 
 
 class Education(BaseModel):
@@ -36,7 +36,7 @@ class Education(BaseModel):
     minor: str | None = None
     school: str
     date: Date
-    description: dict[str, str] | None = None
+    description: dict[str, str] = Field(default_factory=dict)
 
 
 class Project(BaseModel):
@@ -45,7 +45,7 @@ class Project(BaseModel):
     summary: str
     date: Date
     links: list[str]
-    description: list[str] | None = None
+    description: list[str] = Field(default_factory=list)
 
 
 type Date = str | DateRange
