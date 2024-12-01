@@ -14,7 +14,10 @@
     "python.languageServer": "Pylance",
     "python.analysis.diagnosticMode": "workspace",
     "files.associations": {
-        "*.tex.jinja": "jinja-latex",
+        "*.typ.jinja": "typst",
     },
     "yaml.schemaStore.enable": false,
+    "tinymist.fontPaths": [
+        "${workspaceFolder}/src/resume/resources/fonts",
+    ],
 }

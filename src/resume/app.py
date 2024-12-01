@@ -10,6 +10,7 @@ from jinja2 import Environment, PackageLoader, StrictUndefined
 from typer import Option, Typer
 
 from resume.models import Resume
+from resume.resources import load_resource_dir
 from resume.utils.logging import setup_logging
 
 logger = logging.getLogger(__name__)
@@ -29,6 +30,7 @@ def main(
         Path,
         Option("--output-dir", "-o", envvar="RESUME_OUTPUT"),
     ] = Path("out"),
+    do_compile: Annotated[bool, Option("--compile")] = True,
     verbosity: Annotated[int, Option("--verbose", "-v", count=True)] = 0,
 ):
     setup_logging(verbosity, ci=is_ci())
@@ -56,26 +58,32 @@ def main(
 
     # render template
 
-    tex_filename = "resume.tex"
-    tex_path = output_dir / tex_filename
+    typst_filename = "resume.typ"
+    typst_path = output_dir / typst_filename
 
-    logger.info(f"Rendering LaTeX file: {tex_path}")
+    logger.info(f"Rendering Typst file: {typst_path}")
 
-    template = env.get_template("resume.tex.jinja")
+    template = env.get_template("resume.typ.jinja")
     result = template.render(template_args)
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    tex_path.write_text(result)
+    typst_path.write_text(result)
 
-    # compile LaTeX to PDF
+    # compile Typst to PDF
 
-    logger.info("Compiling LaTeX file to PDF.")
+    if do_compile:
+        logger.info("Compiling Typst file to PDF.")
 
-    subprocess.run(
-        ["pdflatex", tex_filename],
-        cwd=output_dir,
-        check=True,
-    )
+        with load_resource_dir("fonts") as fonts_dir:
+            logger.debug(f"{fonts_dir=}")
+            subprocess.run(
+                ["typst", "compile", typst_filename],
+                cwd=output_dir,
+                env={
+                    "TYPST_FONT_PATHS": str(fonts_dir),
+                },
+                check=True,
+            )
 
 
 def is_ci():

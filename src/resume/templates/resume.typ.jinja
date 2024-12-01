@@ -1,0 +1,66 @@
+#show heading: set text(
+  font: "Helvetica Neue",
+)
+
+#show link: underline
+
+#set text(
+  size: 11pt,
+  font: "Helvetica Neue",
+  weight: "light",
+)
+
+#set page(
+  paper: "us-letter",
+  margin: (x: 0.5in, y: 0.5in),
+)
+
+#set par(justify: true)
+
+#let chiline() = {v(-3pt); line(length: 100%, stroke: 0.5pt); v(-5pt)}
+
+= [object Object]
+
+object\@objectobject.ca |
+#link("https://github.com/object-Object")[github.com/object-Object]
+
+== Education
+#chiline()
+
+#link("https://typst.app/")[*#lorem(2)*] #h(1fr) 2333/23 -- 2333/23 \
+#lorem(5) #h(1fr) #lorem(2) \
+- #lorem(10)
+
+*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
+#lorem(5) #h(1fr) #lorem(2) \
+- #lorem(10)
+
+== Work Experience
+#chiline()
+
+*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
+#lorem(5) #h(1fr) #lorem(2) \
+- #lorem(20)
+- #lorem(30)
+- #lorem(40)
+
+*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
+#lorem(5) #h(1fr) #lorem(2) \
+- #lorem(20)
+- #lorem(30)
+- #lorem(40)
+
+== Projects
+#chiline()
+
+*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
+#lorem(5) #h(1fr) #lorem(2) \
+- #lorem(20)
+- #lorem(30)
+- #lorem(40)
+
+*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
+#lorem(5) #h(1fr) #lorem(2) \
+- #lorem(20)
+- #lorem(30)
+- #lorem(40)

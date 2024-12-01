@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        // Python
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        // Jinja
+        "samuelcolvin.jinjahtml",
+        "noxiz.jinja-snippets",
+        // Typst
+        "myriad-dreamin.tinymist",
+    ]
+}
