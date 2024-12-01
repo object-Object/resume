@@ -1,0 +1,7 @@
+{
+    "watch": [
+        "src"
+    ],
+    "ext": "jinja,py,ttf",
+    "exec": "rye run resume"
+}
