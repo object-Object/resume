@@ -1,3 +1,5 @@
+import logging
+import os
 import subprocess
 from pathlib import Path
 from typing import Annotated
@@ -8,6 +10,9 @@ from jinja2 import Environment, PackageLoader, StrictUndefined
 from typer import Option, Typer
 
 from resume.models import Resume
+from resume.utils.logging import setup_logging
+
+logger = logging.getLogger(__name__)
 
 app = Typer(
     pretty_exceptions_show_locals=False,
@@ -24,14 +29,21 @@ def main(
         Path,
         Option("--output-dir", "-o", envvar="RESUME_OUTPUT"),
     ] = Path("out"),
+    verbosity: Annotated[int, Option("--verbose", "-v", count=True)] = 0,
 ):
+    setup_logging(verbosity, ci=is_ci())
+
     # load config
+
+    logger.info(f"Loading config file: {config_path}")
 
     with config_path.open("r", encoding="utf-8") as f:
         data = yaml.load(f, yaml.CLoader)
         resume = Resume.model_validate(data)
 
     # set up Jinja
+
+    logger.info("Setting up Jinja environment.")
 
     env = Environment(
         loader=PackageLoader("resume"),
@@ -44,21 +56,30 @@ def main(
 
     # render template
 
+    tex_filename = "resume.tex"
+    tex_path = output_dir / tex_filename
+
+    logger.info(f"Rendering LaTeX file: {tex_path}")
+
     template = env.get_template("resume.tex.jinja")
     result = template.render(template_args)
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    tex_filename = "resume.tex"
-    tex_path = output_dir / tex_filename
     tex_path.write_text(result)
 
     # compile LaTeX to PDF
+
+    logger.info("Compiling LaTeX file to PDF.")
 
     subprocess.run(
         ["pdflatex", tex_filename],
         cwd=output_dir,
         check=True,
     )
+
+
+def is_ci():
+    return bool(os.getenv("CI"))
 
 
 if __name__ == "__main__":
