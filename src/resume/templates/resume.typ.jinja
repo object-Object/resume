@@ -6,6 +6,10 @@
   {%- endif -%}
 {%- endmacro -%}
 
+{%- macro Link(link) -%}
+  #link("{{ link }}")[{{ link.removeprefix("https://").removeprefix("http://") }}]
+{%- endmacro -%}
+
 #set text(
   size: 11pt,
   font: "Roboto",
@@ -28,7 +32,7 @@
   footer: context [
     #set text(size: 10pt, fill: luma(100))
     #set align(center)
-    Made with #sym.suit.heart.filled using #link("https://github.com/object-Object/resume")[github.com/object-Object/resume].
+    Made with #sym.suit.heart.filled using {{ Link("https://github.com/object-Object/resume") }}.
   ],
 )
 
@@ -41,13 +45,18 @@
 
 #let contact_sep = " " + [#sym.bullet] + " "
 
+#let tabstop(width, body) = context {
+  let size = measure(body)
+  [#body #h(width - size.width)]
+}
+
 #align(center)[
   = {{ resume.contact.name }}
 
   {{ resume.contact.phone }}
   #contact_sep {{ resume.contact.email|replace("@", "\\@") }}
   {%- for link in resume.contact.links %}
-    #contact_sep #link("{{ link }}")[{{ link.removeprefix("https://").removeprefix("http://") }}]
+    #contact_sep {{ Link(link) }}
   {%- endfor %}
 ]
 
@@ -64,28 +73,34 @@
 == EDUCATION
 #chiline()
 
-#link("https://typst.app/")[*#lorem(2)*] #h(1fr) 2333/23 -- 2333/23 \
-#lorem(5) #h(1fr) #lorem(2) \
-- #lorem(10)
-
-*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
-#lorem(5) #h(1fr) #lorem(2) \
-- #lorem(10)
+{% for education in resume.education %}
+  *{{ education.degree }}* {{ "(Minor in "~education.minor~")" if education.minor }} #h(1fr) {{ Date(education.date) }} \
+  {{ education.school }} \
+  // TODO: calculate spacing somehow instead of hardcoding it
+  {%- for key, value in education.description.items() %}
+    - #tabstop(8.3em)[*{{ key }}:*] {{ value }}
+  {%- endfor %}
+{% endfor %}
 
 == PROJECTS
 #chiline()
 
-*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
-#lorem(5) #h(1fr) #lorem(2) \
-- #lorem(20)
-- #lorem(30)
-- #lorem(40)
-
-*#lorem(2)* #h(1fr) 2333/23 -- 2333/23 \
-#lorem(5) #h(1fr) #lorem(2) \
-- #lorem(20)
-- #lorem(30)
-- #lorem(40)
+{% for project in resume.projects %}
+  *{{ project.name }}* {{ "\@ "~project.location if project.location }} #h(1fr) {{ Date(project.date) }} \
+  {{ project.summary }} \
+  // TODO: this will look weird with more than two links
+  Link{{ "s" if project.links|length > 1 }}: {% for link in project.links -%}
+    {%- if not loop.first %} & {% endif -%}
+    {{ Link(link) }}
+  {%- endfor %} \
+  {%- for line in project.description %}
+    - {{ line }}
+  {%- endfor %}
+{% endfor %}
 
 == SKILLS
 #chiline()
+
+{%- for key, value in resume.skills.items() %}
+  - #tabstop(4.9em)[*{{ key }}:*] {{ value|replace("#", "\#") }}
+{%- endfor %}
