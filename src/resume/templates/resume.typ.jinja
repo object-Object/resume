@@ -2,13 +2,13 @@
   {%- if date is string -%}
     {{ date }}
   {%- else -%}
-    {{ date.start }}--{{ date.end }}
+    {{ date.start }} -- {{ date.end }}
   {%- endif -%}
 {%- endmacro -%}
 
 #set text(
   size: 11pt,
-  font: "Arial",
+  font: "Roboto",
   weight: "light",
 )
 

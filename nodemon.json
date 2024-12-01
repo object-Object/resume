@@ -3,6 +3,6 @@
         "src",
         "submodules/resume-data"
     ],
-    "ext": "jinja,py,ttf,yaml,yml",
+    "ext": "jinja,py,yaml,yml",
     "exec": "rye run resume"
 }
