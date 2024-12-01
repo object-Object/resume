@@ -1,6 +1,6 @@
 # resume
 
-Data-driven resume generator for [Typst](https://typst.app), based on [Jinja](https://jinja.palletsprojects.com) and [Pydantic](https://docs.pydantic.dev).
+Data-driven resume generator for [Typst](https://typst.app) using [Jinja](https://jinja.palletsprojects.com) and [Pydantic](https://docs.pydantic.dev).
 
 ## Setup
 
