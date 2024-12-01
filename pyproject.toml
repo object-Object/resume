@@ -10,6 +10,11 @@ classifiers = [
 ]
 requires-python = ">= 3.13"
 dependencies = [
+    "pydantic>=2.10.2",
+    "jinja2>=3.1.4",
+    "typer>=0.14.0",
+    "pyyaml>=6.0.2",
+    "python-dotenv>=1.0.1",
 ]
 
 [tool.rye]
@@ -20,6 +25,8 @@ dev-dependencies = [
 ]
 
 [tool.rye.scripts]
+resume = { call = "resume.app" }
+
 setup = { chain = ["setup:sync", "setup:pre-commit"] }
 "setup:sync" = "rye sync"
 "setup:pre-commit" = "pre-commit install"

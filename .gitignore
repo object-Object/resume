@@ -1,5 +1,7 @@
-
+out/
 .ruff_cache/
+resume.yml
+resume.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

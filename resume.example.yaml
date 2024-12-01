@@ -1,0 +1,102 @@
+contact:
+  name: '[object Object]'
+  phone: (555) 555-5555
+  email: object@objectobject.ca
+  links:
+    - https://github.com/object-Object
+
+employment:
+  - title: Back End Developer (co-op)
+    company: (redacted)
+    date:
+      start: May 2023
+      end: April 2024
+    description:
+      - (redacted)
+      - (redacted)
+      - (redacted)
+
+  - title: Junior Software Developer (co-op)
+    company: (redacted)
+    date:
+      start: May
+      end: August 2022
+    description:
+      - (redacted)
+      - (redacted)
+      - (redacted)
+
+  - title: Team Member
+    company: Tim Hortons
+    date:
+      start: August 2019
+      end: August 2022
+
+  - title: Employee/Supervisor
+    company: (redacted)
+    date: Summers of 2019, 2020, 2021
+
+education:
+  - degree: BSc (Honours), Computer Science
+    minor: Astronomy
+    school: (redacted)
+    date:
+      start: '2020'
+      end: '2025'
+    description:
+      GPA (4.3 scale): '4.21'
+      Relevant Courses: TODO
+      Clubs: Board Games Club (president 2022--2023), CS Club
+      Awards: President's Honours List (every semester to date)
+
+  - degree: Ontario Secondary School Diploma
+    school: (redacted)
+    date:
+      start: '2016'
+      end: '2020'
+
+projects:
+  - name: hexdoc
+    summary: Data-driven static site generator for documenting Minecraft mods.
+    date:
+      start: June 2023
+    links:
+      - https://pypi.org/project/hexdoc
+    description:
+      - TODO
+
+  - name: CanaCache
+    location: (redacted)
+    summary: Polished, modern geocaching app for iOS/Android with social media features, built with Flutter.
+    date:
+      start: September
+      end: December 2022
+    links:
+      - (redacted)
+    description:
+      - Designed a file structure to simplify development by creating abstract MVC classes to enable feature-first design.
+      - Integrated Firebase into the app by implementing data/repository classes and writing Firestore security rules.
+      - Improved the codebase's quality by performing code reviews, refactoring several files, and configuring style rules.
+
+  - name: HexBug / vscode-hex-casting
+    summary: Discord bot and VSCode extension to help users write code in Hex Casting, a stack-based esolang.
+    date:
+      start: September 2022
+    links:
+      - https://github.com/object-Object/HexBug
+      - https://github.com/object-Object/vscode-hex-casting
+    description:
+      - Reverse-engineered Hex's systems by porting Java/Kotlin code to Python and translating/parsing data formats.
+      - Designed an easy-to-use UI for finding and displaying information about Hex through Discord's REST API.
+      - Achieved over 950 downloads by creating a powerful VSCode extension to meet users' needs and requests.
+
+  - name: Smart Light Switch
+    summary: Device that allows an iPhone to control a light switch through a Rust-based REST API served by a Raspberry Pi.
+    date:
+      start: September 2021
+    links:
+      - https://github.com/object-Object/lightswitch-rs
+
+skills:
+  Proficient: Python, Kotlin, Java, Rust, Git, Linux, SQL/NoSQL, AWS (CDK, Lambda, DynamoDB, S3, CodeDeploy), CI/CD
+  Familiar: TypeScript/JS, HTML/CSS, Clojure, C#, C++, C, Lua, React

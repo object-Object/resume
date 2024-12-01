@@ -1,0 +1,3 @@
+[submodule ".\\submodules\\resume-data"]
+	path = .\\submodules\\resume-data
+	url = https://github.com/object-Object/resume-data.git

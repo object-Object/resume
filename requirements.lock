@@ -10,3 +10,37 @@
 #   universal: false
 
 -e file:.
+annotated-types==0.7.0
+    # via pydantic
+click==8.1.7
+    # via typer
+colorama==0.4.6
+    # via click
+jinja2==3.1.4
+    # via resume
+markdown-it-py==3.0.0
+    # via rich
+markupsafe==3.0.2
+    # via jinja2
+mdurl==0.1.2
+    # via markdown-it-py
+pydantic==2.10.2
+    # via resume
+pydantic-core==2.27.1
+    # via pydantic
+pygments==2.18.0
+    # via rich
+python-dotenv==1.0.1
+    # via resume
+pyyaml==6.0.2
+    # via resume
+rich==13.9.4
+    # via typer
+shellingham==1.5.4
+    # via typer
+typer==0.14.0
+    # via resume
+typing-extensions==4.12.2
+    # via pydantic
+    # via pydantic-core
+    # via typer
