@@ -72,7 +72,7 @@ def main(
     # compile Typst to PDF
 
     if do_compile:
-        logger.info("Compiling Typst file to PDF.")
+        logger.info(f"Compiling Typst file to PDF: {typst_path.with_suffix(".pdf")}")
 
         with load_resource_dir("fonts") as fonts_dir:
             logger.debug(f"{fonts_dir=}")
